@@ -1,7 +1,7 @@
 package com.operationhandler.controller;
 
 import com.operationhandler.dto.Operation;
-import com.operationhandler.service.TopicProducer;
+import com.operationhandler.service.OperationProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-public class TopicProducerController {
+public class OperationProducerController {
 
     @Autowired
-    private TopicProducer topicProducer;
+    private OperationProducer topicProducer;
 
     @PostMapping(value = "/add-operation")
     public ResponseEntity<String> createOrUpdateAccount(@RequestBody Operation operation) {

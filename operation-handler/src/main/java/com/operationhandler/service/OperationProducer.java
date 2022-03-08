@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class TopicProducer {
+public class OperationProducer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TopicProducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OperationProducer.class);
     private final KafkaTemplate<String, Operation> kafkaTemplate;
     @Value("${topic.name}")
     private String topicName;
 
-    public TopicProducer(KafkaTemplate<String, Operation> kafkaTemplate) {
+    public OperationProducer(KafkaTemplate<String, Operation> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
