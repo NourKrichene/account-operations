@@ -4,6 +4,7 @@ import axios from "axios";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:8081/operations")
@@ -17,23 +18,13 @@ const App = () => {
           <Operation key={operation.id} operation={operation} />
         ))}
       </ul>
-      {/* <div class="flex flex-row">
-        <div
-          class="basis-1/4  md:basis-1/3 sm:basis-1/2"
-          style={{ color: "red", backgroundColor: "green" }}>
-          01
-        </div>
-        <div
-          class="basis-1/4 hover:basis-1/2  md:basis-1/3 sm:basis-1/4"
-          style={{ color: "green", backgroundColor: "red" }}>
-          02
-        </div>
-        <div
-          class="basis-1/2  md:basis-1/3 sm:basis-1/4"
-          style={{ color: "red", backgroundColor: "yellow" }}>
-          03
-        </div>
-      </div> */}
+
+      <input
+        type="text"
+        placeholder="Add amount"
+        onChange={(e) => setSearchInput(e.target.value)}
+      />
+      <p>The new operation : {searchInput}</p>
     </div>
   );
 };
