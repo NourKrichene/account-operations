@@ -1,5 +1,6 @@
-package com.mybank.service;
+package com.operationhandler.service;
 
+import com.operationhandler.dto.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,19 +12,18 @@ import org.springframework.stereotype.Service;
 public class TopicProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TopicProducer.class);
-
+    private final KafkaTemplate<String, Operation> kafkaTemplate;
     @Value("${topic.name}")
     private String topicName;
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
-
-    public TopicProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public TopicProducer(KafkaTemplate<String, Operation> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(String message){
-        LOGGER.info("Payload sent: "+ message);
-        kafkaTemplate.send(topicName, message);
+    public void send(Operation operation) {
+        LOGGER.info("Payload sent: " + operation);
+        kafkaTemplate.send(topicName , operation);
     }
+
 
 }
