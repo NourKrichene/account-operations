@@ -9,8 +9,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 public class MyBankApplication {
 
     public static void main(String[] args) {
-		SpringApplication.run(MyBankApplication.class , args);
+        SpringApplication.run(MyBankApplication.class , args);
     }
-
 
 }

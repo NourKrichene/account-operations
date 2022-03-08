@@ -33,36 +33,36 @@ public class Operation {
         return id;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public Date getExecutionDate() {
-        return executionDate;
-    }
-
-    public boolean isWithdrawal() {
-        return withdrawal;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public void setLabel(String label) {
         this.label = label;
     }
 
+    public Date getExecutionDate() {
+        return executionDate;
+    }
+
     public void setExecutionDate(Date executionDate) {
         this.executionDate = executionDate;
+    }
+
+    public boolean isWithdrawal() {
+        return withdrawal;
     }
 
     public void setWithdrawal(boolean withdrawal) {
