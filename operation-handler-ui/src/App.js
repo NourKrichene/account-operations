@@ -45,7 +45,11 @@ const App = () => {
         <p>The new operation : {amountInput + " " + labelInput}</p>
       </div>
       <div>
-        <button onClick={() => pushOp()}>Push</button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full"
+          onClick={() => pushOp()}>
+          Push
+        </button>
       </div>
     </div>
   );
