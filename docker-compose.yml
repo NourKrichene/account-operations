@@ -1,13 +1,11 @@
-version: '3.1'
-
+version: "3.1"
 
 services:
-
   db:
     image: mariadb
     restart: always
     ports:
-      - '3306:3306'
+      - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: rootpw
       MARIADB_DATABASE: my-bank
@@ -21,16 +19,16 @@ services:
       - 8080:8080
 
   zookeeper:
-    image: 'bitnami/zookeeper:latest'
+    image: "bitnami/zookeeper:latest"
     ports:
-      - '2181:2181'
+      - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
   kafka:
-    image: 'bitnami/kafka:latest'
+    image: "bitnami/kafka:latest"
     ports:
-      - '9092:9092'
+      - "9092:9092"
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
@@ -39,3 +37,15 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+
+  operation-handler-ui:
+    build:
+      context: ./operation-handler-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: operation-handler-ui
+    stdin_open: true
+    volumes:
+      - ./operation-handler-ui:/app
+      - /app/node_modules
