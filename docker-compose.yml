@@ -1,22 +1,28 @@
 version: "3.1"
 
 services:
-  db:
+  mariadb:
     image: mariadb
     restart: always
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb-volume:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: rootpw
       MARIADB_DATABASE: my-bank
       MARIADB_USER: user
       MARIADB_PASSWORD: userpw
+    networks:
+      - everynet
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - everynet
 
   zookeeper:
     image: "bitnami/zookeeper:latest"
@@ -24,6 +30,8 @@ services:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - everynet
 
   kafka:
     image: "bitnami/kafka:latest"
@@ -37,6 +45,8 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+    networks:
+      - everynet
 
   operation-handler-ui:
     build:
@@ -49,12 +59,39 @@ services:
     volumes:
       - ./operation-handler-ui:/app
       - /app/node_modules
+    networks:
+      - everynet
 
-  demo:
-    container_name: demo
+  my-bank:
+    container_name: my-bank
     build:
-      context: ./demo
+      context: ./my-bank
       dockerfile: Dockerfile
-    image: demo:latest
+    image: my-bank:latest
     ports:
-      - 8083:8083
+      - 8081:8081
+    depends_on:
+      - mariadb
+      - kafka
+    networks:
+      - everynet
+
+  operation-handler:
+    container_name: operation-handler
+    build:
+      context: ./operation-handler
+      dockerfile: Dockerfile
+    image: operation-handler:latest
+    ports:
+      - 8082:8082
+    depends_on:
+      - kafka
+    networks:
+      - everynet
+
+networks:
+  everynet:
+
+volumes:
+  mariadb-volume:
+    driver: local
