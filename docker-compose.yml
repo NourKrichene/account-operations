@@ -49,3 +49,12 @@ services:
     volumes:
       - ./operation-handler-ui:/app
       - /app/node_modules
+
+  demo:
+    container_name: demo
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    image: demo:latest
+    ports:
+      - 8083:8083
