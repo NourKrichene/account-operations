@@ -1,4 +1,5 @@
-package com.bank.core;
+/*
+package com.bank.corebanking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,3 +12,4 @@ class CoreApplicationTests {
 	}
 
 }
+*/

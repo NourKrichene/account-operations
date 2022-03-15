@@ -1,4 +1,4 @@
-package com.bank.core;
+package com.bank.corebanking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

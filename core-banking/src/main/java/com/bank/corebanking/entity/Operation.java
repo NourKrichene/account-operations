@@ -1,4 +1,4 @@
-package com.bank.core.entity;
+package com.bank.corebanking.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

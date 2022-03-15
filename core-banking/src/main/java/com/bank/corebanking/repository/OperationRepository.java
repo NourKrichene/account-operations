@@ -1,7 +1,7 @@
-package com.bank.core.repository;
+package com.bank.corebanking.repository;
 
 
-import com.bank.core.entity.Operation;
+import com.bank.corebanking.entity.Operation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
