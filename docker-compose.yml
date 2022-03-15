@@ -52,12 +52,12 @@ services:
       - ./operation-handler-ui:/app
       - /app/node_modules
 
-  # my-bank:
-  #   container_name: my-bank
+  # core:
+  #   container_name: core
   #   build:
-  #     context: ./my-bank
+  #     context: ./core
   #     dockerfile: Dockerfile
-  #   image: my-bank:latest
+  #   image: core:latest
   #   ports:
   #     - 8081:8081
   #   depends_on:

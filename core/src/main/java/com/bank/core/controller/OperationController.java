@@ -1,7 +1,8 @@
-package com.mybank.controller;
+package com.bank.core.controller;
 
-import com.mybank.entity.Operation;
-import com.mybank.repository.OperationRepository;
+
+import com.bank.core.entity.Operation;
+import com.bank.core.repository.OperationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

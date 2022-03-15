@@ -1,7 +1,8 @@
-package com.mybank.service;
+package com.bank.core.service;
 
-import com.mybank.entity.Operation;
-import com.mybank.repository.OperationRepository;
+
+import com.bank.core.entity.Operation;
+import com.bank.core.repository.OperationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package com.mybank.config;
+package com.bank.core.config;
 
-import com.mybank.entity.Operation;
+import com.bank.core.entity.Operation;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
