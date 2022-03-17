@@ -1,6 +1,9 @@
 package com.bank.corebanking.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,8 +16,7 @@ public class Operation {
     Long id;
     BigDecimal amount;
     String label;
-    Date executionDate;
-    boolean withdrawal;
+    Date creationDate;
     Long accountSender;
     Long accountReceiver;
 
@@ -23,11 +25,10 @@ public class Operation {
     }
 
 
-    public Operation(BigDecimal amount , String label , Date executionDate , boolean withdrawal  , Long accountSender, Long accountReceiver) {
+    public Operation(BigDecimal amount , String label , Date creationDate , Long accountSender , Long accountReceiver) {
         this.amount = amount;
         this.label = label;
-        this.executionDate = executionDate;
-        this.withdrawal = withdrawal;
+        this.creationDate = creationDate;
         this.accountReceiver = accountReceiver;
         this.accountSender = accountSender;
     }
@@ -56,20 +57,12 @@ public class Operation {
         this.label = label;
     }
 
-    public Date getExecutionDate() {
-        return executionDate;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setExecutionDate(Date executionDate) {
-        this.executionDate = executionDate;
-    }
-
-    public boolean isWithdrawal() {
-        return withdrawal;
-    }
-
-    public void setWithdrawal(boolean withdrawal) {
-        this.withdrawal = withdrawal;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
 
@@ -83,6 +76,6 @@ public class Operation {
 
     @Override
     public String toString() {
-        return "Operation{" + "amount=" + amount + ", label='" + label + '\'' + ", executionDate=" + executionDate + ", withdrawal=" + withdrawal + ", accountSender=" + accountSender + ", accountReceiver=" + accountReceiver + '}';
+        return "Operation{" + "amount=" + amount + ", label='" + label + '\'' + ", creationDate=" + creationDate + ", accountSender=" + accountSender + ", accountReceiver=" + accountReceiver + '}';
     }
 }
