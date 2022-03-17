@@ -1,9 +1,6 @@
 package com.bank.corebanking.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,15 +15,21 @@ public class Operation {
     String label;
     Date executionDate;
     boolean withdrawal;
+    Long accountSender;
+    Long accountReceiver;
+
 
     public Operation() {
     }
 
-    public Operation(BigDecimal amount , String label , Date executionDate , boolean withdrawal) {
+
+    public Operation(BigDecimal amount , String label , Date executionDate , boolean withdrawal  , Long accountSender, Long accountReceiver) {
         this.amount = amount;
         this.label = label;
         this.executionDate = executionDate;
         this.withdrawal = withdrawal;
+        this.accountReceiver = accountReceiver;
+        this.accountSender = accountSender;
     }
 
     public Long getId() {
@@ -69,8 +72,17 @@ public class Operation {
         this.withdrawal = withdrawal;
     }
 
+
+    public void setAccountReceiver(Long accountReceiver) {
+        this.accountReceiver = accountReceiver;
+    }
+
+    public void setAccountSender(Long accountSender) {
+        this.accountSender = accountSender;
+    }
+
     @Override
     public String toString() {
-        return "Operation{" + "id=" + id + ", amount=" + amount + ", label='" + label + '\'' + ", executionDate=" + executionDate + ", withdrawal=" + withdrawal + '}';
+        return "Operation{" + "amount=" + amount + ", label='" + label + '\'' + ", executionDate=" + executionDate + ", withdrawal=" + withdrawal + ", accountSender=" + accountSender + ", accountReceiver=" + accountReceiver + '}';
     }
 }

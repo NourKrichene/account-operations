@@ -18,8 +18,9 @@ public class OperationListener {
 
     @KafkaListener(topics = "${topic.name}", groupId = "group_id")
     public void consume(Operation operation) {
-        operationRepository.save(operation);
         LOGGER.info("Received: " + operation);
+        operationRepository.save(operation);
+
     }
 
 
