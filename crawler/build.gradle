@@ -16,8 +16,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'co.elastic.clients:elasticsearch-java:8.0.1'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+	implementation 'jakarta.json:jakarta.json-api:2.0.1'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
+	implementation 'co.elastic.clients:elasticsearch-java:8.1.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework:spring-webflux'
 }
