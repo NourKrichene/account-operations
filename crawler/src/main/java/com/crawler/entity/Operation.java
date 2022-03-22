@@ -6,8 +6,6 @@ import java.util.Date;
 
 public class Operation {
 
-
-
     Long id;
     BigDecimal amount;
     String label;
@@ -20,7 +18,7 @@ public class Operation {
     }
 
 
-    public Operation(Long id,BigDecimal amount , String label , Date creationDate , Long accountSender , Long accountReceiver) {
+    public Operation(Long id, BigDecimal amount, String label, Date creationDate, Long accountSender, Long accountReceiver) {
         this.id = id;
         this.amount = amount;
         this.label = label;

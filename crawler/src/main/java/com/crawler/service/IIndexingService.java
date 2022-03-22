@@ -1,7 +1,9 @@
 package com.crawler.service;
 
-public interface IIndexingService {
-    void serachOperation();
+import com.crawler.entity.Operation;
 
-    void saveOperation();
+public interface IIndexingService {
+    void searchOperation();
+
+    void indexOperation(Operation operation);
 }

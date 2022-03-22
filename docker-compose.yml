@@ -34,6 +34,7 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      # - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
@@ -52,28 +53,40 @@ services:
       - ./operation-handler-ui:/app
       - /app/node_modules
 
-  core-banking:
-    container_name: core-banking
-    build:
-      context: ./core-banking
-      dockerfile: Dockerfile
-    image: core-banking:latest
-    ports:
-      - 8081:8081
-    depends_on:
-      - mariadb
-      - kafka
+  # core-banking:
+  #   container_name: core-banking
+  #   build:
+  #     context: ./core-banking
+  #     dockerfile: Dockerfile
+  #   image: core-banking:latest
+  #   ports:
+  #     - 8081:8081
+  #   depends_on:
+  #     - mariadb
+  #     - kafka
 
-  operation-handler:
-    container_name: operation-handler
-    build:
-      context: ./operation-handler
-      dockerfile: Dockerfile
-    image: operation-handler:latest
+  # operation-handler:
+  #   container_name: operation-handler
+  #   build:
+  #     context: ./operation-handler
+  #     dockerfile: Dockerfile
+  #   image: operation-handler:latest
+  #   ports:
+  #     - 8082:8082
+  #   depends_on:
+  #     - kafka
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.0
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - cluster.name=my-bank-cluster
     ports:
-      - 8082:8082
-    depends_on:
-      - kafka
+      - 9200:9200
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data:rw
 
 volumes:
   maria-db:
+  elasticsearch:

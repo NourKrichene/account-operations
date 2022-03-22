@@ -11,56 +11,59 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.crawler.entity.Operation;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Date;
 
 
 @Service
 public class IndexingService implements IIndexingService {
-    // Create the low-level client
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexingService.class);
+
     RestClient restClient = RestClient.builder(
             new HttpHost("localhost", 9200)).build();
 
-    // Create the transport with a Jackson mapper
-    ElasticsearchTransport transport = new RestClientTransport(
-            restClient,new JacksonJsonpMapper());
+    JacksonJsonpMapper jacksonJsonpMapper = new JacksonJsonpMapper();
 
-    // And create the API client
+    ElasticsearchTransport transport = new RestClientTransport(
+            restClient, jacksonJsonpMapper);
+
     ElasticsearchClient client = new ElasticsearchClient(transport);
 
-
     @Override
-    public void serachOperation() {
+    public void searchOperation() {
 
-        SearchResponse<Operation> search =null;
+        SearchResponse<Operation> search = null;
         try {
             search = client.search(s -> s
                             .index("operations")
                             .query(q -> q
                                     .term(t -> t
-                                            .field("amount")
-                                            .value(v -> v.stringValue("label"))
+                                            .field("label")
+                                            .value(v -> v.stringValue("test"))
                                     )),
                     Operation.class);
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.error("Can not search for operation " + e.getMessage());
         }
-
+        System.out.println("length : " + search.hits().hits().size());
         for (Hit<Operation> hit : search.hits().hits()) {
             System.out.println(hit.source());
         }
     }
 
     @Override
-    public void saveOperation() {
+    public void indexOperation(Operation operation) {
+
         IndexRequest<Operation> req;
 
         req = IndexRequest.of(b -> b
                 .index("operations")
-                .document(new Operation(2010L, new BigDecimal(20.5), "Buy a chair", new Date(), 3001L, 3002L))
+                .document(operation)
         );
         try {
             IndexResponse response = client.index(req);
