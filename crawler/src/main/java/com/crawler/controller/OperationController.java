@@ -24,18 +24,17 @@ public class OperationController {
     }
 
 
-
     @CrossOrigin
-    @GetMapping("/get")
+    @GetMapping("/operation")
     public ResponseEntity<String> getOperations() {
         indexingService.searchOperation();
         return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PostMapping(value = "/save")
+    @PostMapping(value = "/operation")
     public ResponseEntity<String> createOrUpdateAccount(@RequestBody Operation operation) {
         indexingService.indexOperation(operation);
-        return new ResponseEntity<>("Operation indexed" , HttpStatus.OK);
+        return new ResponseEntity<>("Operation indexed", HttpStatus.OK);
     }
 }

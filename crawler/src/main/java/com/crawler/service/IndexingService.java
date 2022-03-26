@@ -24,7 +24,7 @@ public class IndexingService implements IIndexingService {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexingService.class);
 
     RestClient restClient = RestClient.builder(
-            new HttpHost("localhost", 9200)).build();
+            new HttpHost("elasticsearch", 9200)).build();
 
     JacksonJsonpMapper jacksonJsonpMapper = new JacksonJsonpMapper();
 
