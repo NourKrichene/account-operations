@@ -5,4 +5,4 @@ RUN mvn -f /home/core-banking/pom.xml clean package
 
 FROM ghcr.io/graalvm/jdk:java17-21.3.0
 COPY --from=build /home/core-banking/target/core-banking-0.0.1-SNAPSHOT.jar /usr/local/lib/core-banking-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","/usr/local/lib/core-banking-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","/usr/local/lib/core-banking-0.0.1-SNAPSHOT.jar"]

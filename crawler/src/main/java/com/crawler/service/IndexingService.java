@@ -5,14 +5,10 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.crawler.entity.Operation;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,22 +16,17 @@ import java.io.IOException;
 
 @Service
 public class IndexingService implements IIndexingService {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexingService.class);
+    private ElasticsearchClient client;
 
-    RestClient restClient = RestClient.builder(
-            new HttpHost("elasticsearch", 9200)).build();
+    @Autowired
+    public IndexingService(ElasticsearchClient esClient) {
+        this.client = esClient;
 
-    JacksonJsonpMapper jacksonJsonpMapper = new JacksonJsonpMapper();
-
-    ElasticsearchTransport transport = new RestClientTransport(
-            restClient, jacksonJsonpMapper);
-
-    ElasticsearchClient client = new ElasticsearchClient(transport);
+    }
 
     @Override
     public void searchOperation() {
-
         SearchResponse<Operation> search = null;
         try {
             search = client.search(s -> s

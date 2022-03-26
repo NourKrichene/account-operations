@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class OperationController {
 
-
     private IIndexingService indexingService;
 
     @Autowired
@@ -25,14 +24,14 @@ public class OperationController {
 
 
     @CrossOrigin
-    @GetMapping("/operation")
+    @GetMapping("/operation/search")
     public ResponseEntity<String> getOperations() {
         indexingService.searchOperation();
         return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PostMapping(value = "/operation")
+    @PostMapping(value = "/operation/add")
     public ResponseEntity<String> createOrUpdateAccount(@RequestBody Operation operation) {
         indexingService.indexOperation(operation);
         return new ResponseEntity<>("Operation indexed", HttpStatus.OK);
