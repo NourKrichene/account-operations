@@ -16,7 +16,7 @@ const App = () => {
     const op = {
       amount: amountInput,
       label: labelInput,
-      executionDate: new Date(),
+      creationDate: new Date(),
       withdrawal: true,
     };
     axios.post("http://localhost:8082/add-operation", op);
