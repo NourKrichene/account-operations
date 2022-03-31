@@ -19,8 +19,6 @@ const Operations = () => {
     const op = {
       amount: amountInput,
       label: labelInput,
-      creationDate: new Date(),
-      withdrawal: true,
       accountReceiver: accountReceiverInput,
       accountSender: accountsenderInput,
     };
@@ -60,7 +58,7 @@ const Operations = () => {
           />
           <div className="py-8">
             <p>
-              The new operation :
+              The new operation:
               {amountInput +
                 " " +
                 labelInput +

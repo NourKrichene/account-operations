@@ -18,7 +18,7 @@ public class OperationProducerController {
 
     @CrossOrigin
     @PostMapping(value = "/add-operation")
-    public ResponseEntity<String> createOrUpdateAccount(@RequestBody Operation operation) {
+    public ResponseEntity<String> addOperation(@RequestBody Operation operation) {
         topicProducer.send(operation);
         return new ResponseEntity<>("Operation sent" , HttpStatus.OK);
     }

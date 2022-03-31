@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class OperationListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(OperationListener.class);
@@ -22,7 +24,8 @@ public class OperationListener {
 
     @KafkaListener(topics = "${topic.name}", groupId = "${kafka.group.id}")
     public void consume(Operation operation) {
-
+        LOGGER.info("Received: " + operation);
+        operation.setCreationDate(new Date());
         if (operation.getAccountReceiver() != null) {
             var receiver = accountRepository.findById(operation.getAccountReceiver());
             receiver.ifPresent(e -> {
@@ -39,8 +42,9 @@ public class OperationListener {
                     }
             );
         }
-        LOGGER.info("Received: " + operation);
+
         operationRepository.save(operation);
+        LOGGER.info("Saved: " + operation);
     }
 
 }
