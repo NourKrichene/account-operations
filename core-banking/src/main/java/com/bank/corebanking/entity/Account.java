@@ -23,4 +23,24 @@ public class Account {
         this.owner = owner;
         this.creationDate = creationDate;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 }

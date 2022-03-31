@@ -16,7 +16,7 @@ public class OperationProcessor {
     void buildPipeline(StreamsBuilder streamsBuilder) {
         KStream<String, Operation> messageStream = streamsBuilder
                 .stream("operation-topic", Consumed.with(Serdes.String(), CustomSerdes.OperationSerde()));
-        
+
         messageStream.foreach((k, e) -> System.out.println("Operation received in stream " + e));
     }
 }

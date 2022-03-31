@@ -74,6 +74,14 @@ public class Operation {
         this.accountSender = accountSender;
     }
 
+    public Long getAccountSender() {
+        return accountSender;
+    }
+
+    public Long getAccountReceiver() {
+        return accountReceiver;
+    }
+
     @Override
     public String toString() {
         return "Operation{" + "amount=" + amount + ", label='" + label + '\'' + ", creationDate=" + creationDate + ", accountSender=" + accountSender + ", accountReceiver=" + accountReceiver + '}';
