@@ -21,9 +21,10 @@ const Accounts = () => {
   return (
     <div className="App flex flex-row">
       <div>
+        <h1 className="text-xl font-bold">Accounts</h1>
         <ul>
           {data.map((account) => (
-            <li className="text-xl font-bold py-1">
+            <li className=" py-1">
               {account.id}, {account.balance}, {account.owner},
               {account.creationDate}
             </li>
@@ -43,11 +44,11 @@ const Accounts = () => {
             <p>The new name: {nameInput}</p>
           </div>
         </div>
-        <div>
+        <div className="pl-7">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full"
             onClick={() => pushAccount()}>
-            Push
+            Add
           </button>
         </div>
       </div>

@@ -28,6 +28,7 @@ const Operations = () => {
   return (
     <div className="App flex flex-row">
       <div className="pb-8 ">
+        <h1 className="text-xl font-bold">Operations</h1>
         <ul>
           {data.map((operation) => (
             <Operation key={operation.id} operation={operation} />
@@ -56,7 +57,7 @@ const Operations = () => {
             placeholder="receiver id"
             onChange={(e) => setAccountReceiver(e.target.value)}
           />
-          <div className="py-8">
+          <div className="pt-8 pb-20">
             <p>
               The new operation:
               {amountInput +
@@ -69,11 +70,11 @@ const Operations = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className="pl-7">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full"
             onClick={() => pushOp()}>
-            Push
+            Add
           </button>
         </div>
       </div>
