@@ -10,7 +10,7 @@ services:
       - maria-db:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: rootpw
-      MARIADB_DATABASE: my-bank
+      MARIADB_DATABASE: bank-account-operations
       MARIADB_USER: user
       MARIADB_PASSWORD: userpw
 
@@ -57,7 +57,7 @@ services:
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
-      - cluster.name=my-bank-cluster
+      - cluster.name=bank-account-operations-cluster
     ports:
       - 9200:9200
     volumes:
