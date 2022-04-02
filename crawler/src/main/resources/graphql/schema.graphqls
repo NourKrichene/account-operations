@@ -1,0 +1,10 @@
+type Query {
+    operation(id: ID): Operation
+    allOperations: [Operation]
+    operationByLabel(label: String): [Operation]
+}
+
+type Operation {
+    id: ID!
+    label: String
+}
