@@ -4,6 +4,9 @@ import axios from "axios";
 const Accounts = () => {
   const [data, setData] = useState([]);
   const [nameInput, setName] = useState("");
+  const [opened, setOpened] = useState(false);
+
+  let eventSource;
 
   useEffect(() => {
     axios
@@ -12,6 +15,27 @@ const Accounts = () => {
   }, []);
 
   const pushAccount = () => {
+    if (!opened) {
+      eventSource = new EventSource("http://localhost:8081/account-sse3");
+      let accountAdded = null;
+      eventSource.addEventListener("TEST", (event) => {
+        accountAdded = JSON.parse(event.data);
+        console.log(`Account from server: ${accountAdded.owner}`);
+        data.push(accountAdded);
+        setData([...data]);
+      });
+      setOpened(true);
+      eventSource.onerror = (event) => {
+        if (event.target.readyState === EventSource.CLOSED) {
+          console.log("SSE closed (" + event.target.readyState + ")");
+        }
+        eventSource.close();
+      };
+
+      eventSource.onopen = () => {
+        console.log("connection opened");
+      };
+    }
     const account = {
       owner: nameInput,
     };
@@ -24,7 +48,7 @@ const Accounts = () => {
         <h1 className="text-xl font-bold">Accounts</h1>
         <ul>
           {data.map((account) => (
-            <li className=" py-1">
+            <li className=" py-1" key={account.id}>
               {account.id}, {account.balance}, {account.owner},
               {account.creationDate}
             </li>
