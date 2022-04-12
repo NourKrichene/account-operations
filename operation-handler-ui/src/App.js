@@ -13,8 +13,6 @@ const App = () => {
   const [accountReceiverInput, setAccountReceiver] = useState("");
   const [accountsenderInput, setAccountSender] = useState("");
 
-  const [accountOwnerNameInput, setAccountOwnerNameInput] = useState("");
-
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const App = () => {
     if (!opened) {
       eventSource = new EventSource("http://localhost:8081/operation-sse");
       let notification = null;
-      eventSource.addEventListener("TEST", (event) => {
+      eventSource.addEventListener("operations", (event) => {
         notification = JSON.parse(event.data);
         operations.push(notification.operation);
         if (notification.sender != null) {
@@ -66,6 +64,10 @@ const App = () => {
       accountSender: accountsenderInput,
     };
     axios.post("http://localhost:8082/add-operation", op);
+    setAmount("");
+    setLabel("");
+    setAccountSender("");
+    setAccountReceiver("");
   };
 
   useEffect(() => {
@@ -73,13 +75,6 @@ const App = () => {
       .get("http://localhost:8081/accounts")
       .then((res) => setAccounts(res.data));
   }, []);
-
-  const pushAccount = () => {
-    const account = {
-      owner: accountOwnerNameInput,
-    };
-    axios.post("http://localhost:8081/add-account", account);
-  };
 
   return (
     <div className="App flex flex-col">
@@ -134,31 +129,7 @@ const App = () => {
       </div>
       <h1 className="text-xl font-bold">Accounts</h1>
       <div className=" flex flex-row">
-        <div className="basis-5/12">
-          <Accounts key={2} accounts={accounts} />
-        </div>
-        <div className="basis-4/12">
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => setAccountOwnerNameInput(e.target.value)}
-            />
-
-            <div className="py-8">
-              <p>The new name: {accountOwnerNameInput}</p>
-            </div>
-          </div>
-        </div>
-        <div className="basis-3/12">
-          <div className="pl-7">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full"
-              onClick={() => pushAccount()}>
-              Add
-            </button>{" "}
-          </div>
-        </div>
+        <Accounts key={2} accounts={accounts} />
       </div>
     </div>
   );

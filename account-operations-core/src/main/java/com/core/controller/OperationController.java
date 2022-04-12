@@ -1,7 +1,7 @@
 package com.core.controller;
 
 
-import com.core.entity.Operation;
+import com.core.model.Operation;
 import com.core.repository.OperationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

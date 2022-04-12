@@ -1,6 +1,6 @@
 package com.core.repository;
 
-import com.core.entity.Account;
+import com.core.model.Account;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

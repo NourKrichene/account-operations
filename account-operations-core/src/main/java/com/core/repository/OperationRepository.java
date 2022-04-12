@@ -1,7 +1,7 @@
 package com.core.repository;
 
 
-import com.core.entity.Operation;
+import com.core.model.Operation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
 package com.core.service;
 
 
-import com.core.entity.Notification;
-import com.core.entity.Operation;
+import com.core.model.OperationNotification;
+import com.core.model.Operation;
 import com.core.repository.AccountRepository;
 import com.core.repository.OperationRepository;
 import org.slf4j.Logger;
@@ -25,11 +25,11 @@ public class OperationListener {
     private AccountRepository accountRepository;
 
     @Autowired
-    private NotificationService notifService;
+    private OperationNotificationService notifService;
 
     @KafkaListener(topics = "${topic.name}", groupId = "${kafka.group.id}")
     public void consume(Operation operation) throws IOException {
-        Notification notification = new Notification();
+        OperationNotification notification = new OperationNotification();
         LOGGER.info("Received: " + operation);
         operation.setCreationDate(new Date());
         if (operation.getAccountReceiver() != null) {

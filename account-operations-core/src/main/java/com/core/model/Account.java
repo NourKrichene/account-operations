@@ -1,9 +1,8 @@
-package com.core.entity;
+package com.core.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 public class Account {

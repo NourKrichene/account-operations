@@ -1,6 +1,6 @@
 package com.core.controller;
 
-import com.core.service.NotificationService;
+import com.core.service.OperationNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,11 +13,13 @@ import java.io.IOException;
 public class OperationNotifier {
 
     @Autowired
-    NotificationService notificationService;
+    OperationNotificationService notificationService;
 
     @CrossOrigin
     @GetMapping("/operation-sse")
     public SseEmitter operationEventEmitter() throws IOException {
-        return notificationService.getEmitter();
+        SseEmitter emitter = new SseEmitter();
+        notificationService.setEmitter(emitter);
+        return emitter;
     }
 }

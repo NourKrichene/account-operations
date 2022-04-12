@@ -1,7 +1,7 @@
 package com.core.controller;
 
 
-import com.core.entity.Account;
+import com.core.model.Account;
 import com.core.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

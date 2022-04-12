@@ -1,6 +1,6 @@
 package com.core.config;
 
-import com.core.entity.Operation;
+import com.core.model.Operation;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

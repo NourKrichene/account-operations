@@ -1,6 +1,6 @@
-package com.core.entity;
+package com.core.model;
 
-public class Notification {
+public class OperationNotification {
 
     Operation operation;
     Account sender;
