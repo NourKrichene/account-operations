@@ -1,4 +1,4 @@
-# Account-operations
+# Async-account-operations
 
 Simple react application to simulate asynchronous operations on bank accounts.
 
