@@ -1,6 +1,6 @@
 package com.bank.corebanking.controller;
 
-import com.bank.corebanking.service.NotifService;
+import com.bank.corebanking.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,11 +13,11 @@ import java.io.IOException;
 public class OperationNotifier {
 
     @Autowired
-    NotifService notifService;
+    NotificationService notificationService;
 
     @CrossOrigin
     @GetMapping("/operation-sse")
     public SseEmitter operationEventEmitter() throws IOException {
-        return notifService.getEmitter();
+        return notificationService.getEmitter();
     }
 }

@@ -29,9 +29,6 @@ const App = () => {
       let notification = null;
       eventSource.addEventListener("TEST", (event) => {
         notification = JSON.parse(event.data);
-        // console.log(
-        //   `Notification from server: ${notification.operation} ${notification.sender.id} ${notification.receiver.id}`
-        // );
         operations.push(notification.operation);
         if (notification.sender != null) {
           var senderToUpdate = accounts.filter((obj) => {
@@ -86,6 +83,7 @@ const App = () => {
 
   return (
     <div className="App flex flex-col">
+      <h1 className="text-xl font-bold">Operations</h1>
       <div className=" flex flex-row">
         <div className="basis-4/12">
           <Operations key={1} operations={operations} />
@@ -134,6 +132,7 @@ const App = () => {
           </button>
         </div>
       </div>
+      <h1 className="text-xl font-bold">Accounts</h1>
       <div className=" flex flex-row">
         <div className="basis-5/12">
           <Accounts key={2} accounts={accounts} />

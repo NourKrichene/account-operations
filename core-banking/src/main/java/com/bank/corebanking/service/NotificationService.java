@@ -7,11 +7,11 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import java.io.IOException;
 
 @Service
-public class NotifService {
+public class NotificationService {
 
     SseEmitter emitter;
 
-    NotifService() {
+    NotificationService() {
         this.emitter = new SseEmitter();
     }
 

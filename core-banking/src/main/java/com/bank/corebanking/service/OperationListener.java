@@ -25,7 +25,7 @@ public class OperationListener {
     private AccountRepository accountRepository;
 
     @Autowired
-    private NotifService notifService;
+    private NotificationService notifService;
 
     @KafkaListener(topics = "${topic.name}", groupId = "${kafka.group.id}")
     public void consume(Operation operation) throws IOException {
