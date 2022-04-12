@@ -10,7 +10,7 @@ services:
       - maria-db:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: rootpw
-      MARIADB_DATABASE: bank-account-operations
+      MARIADB_DATABASE: account-operations
       MARIADB_USER: user
       MARIADB_PASSWORD: userpw
 
@@ -66,18 +66,18 @@ services:
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
-      - cluster.name=bank-account-operations-cluster
+      - cluster.name=account-operations-cluster
     ports:
       - 9200:9200
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data:rw
 
-  core-banking:
-    container_name: core-banking
+  account-operations-core:
+    container_name: account-operations-core
     build:
-      context: ./core-banking
+      context: ./account-operations-core
       dockerfile: Dockerfile
-    image: core-banking:latest
+    image: account-operations-core:latest
     ports:
       - 8081:8081
     depends_on:
