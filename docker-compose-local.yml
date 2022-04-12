@@ -10,7 +10,7 @@ services:
       - maria-db:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: rootpw
-      MARIADB_DATABASE: account-operations
+      MARIADB_DATABASE: operations-db
       MARIADB_USER: user
       MARIADB_PASSWORD: userpw
 

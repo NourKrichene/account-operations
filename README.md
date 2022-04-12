@@ -1,4 +1,4 @@
-# bank-account-operations
+# Account-operations
 
 Simple react application to simulate operations on bank accounts.
 
