@@ -21,7 +21,7 @@ const App = () => {
       .then((res) => setOperations(res.data));
   }, []);
   let eventSource;
-  const pushOp = () => {
+  const pushOperation = () => {
     if (!opened) {
       eventSource = new EventSource("http://localhost:8081/operation-sse");
       let notification = null;
@@ -57,19 +57,21 @@ const App = () => {
       };
     }
 
-    const op = {
+    const operationToAdd = {
       amount: amountInput,
       label: labelInput,
       accountReceiver: accountReceiverInput,
       accountSender: accountsenderInput,
     };
-    axios.post("http://localhost:8082/add-operation", op);
+    axios.post("http://localhost:8082/add-operation", operationToAdd);
+    resetOperationInput();
+  };
+  const resetOperationInput = () => {
     setAmount("");
     setLabel("");
     setAccountSender("");
     setAccountReceiver("");
   };
-
   useEffect(() => {
     axios
       .get("http://localhost:8081/accounts")
@@ -88,21 +90,26 @@ const App = () => {
             <input
               type="text"
               placeholder="Amount"
+              value={amountInput}
               onChange={(e) => setAmount(e.target.value)}
             />
+
             <input
               type="text"
               placeholder="Label"
+              value={labelInput}
               onChange={(e) => setLabel(e.target.value)}
             />
             <input
               type="text"
               placeholder="sender id"
+              value={accountsenderInput}
               onChange={(e) => setAccountSender(e.target.value)}
             />
             <input
               type="text"
               placeholder="receiver id"
+              value={accountReceiverInput}
               onChange={(e) => setAccountReceiver(e.target.value)}
             />
             <div className="pt-8 pb-20">
@@ -121,9 +128,14 @@ const App = () => {
         </div>
         <div className="basis-2/12">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full"
-            onClick={() => pushOp()}>
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full mr-5"
+            onClick={() => pushOperation()}>
             Add
+          </button>
+          <button
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-4 rounded-full"
+            onClick={() => resetOperationInput()}>
+            Clear
           </button>
         </div>
       </div>
